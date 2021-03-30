@@ -1,0 +1,38 @@
+﻿@page
+@model RazorPage_uppgift.Pages.JoinedEvents.IndexModel
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>My Joined Events</h1>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.JoinedEvent[0].Event)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.JoinedEvent[0].Event.Date)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+
+    <tbody>
+@foreach (var item in Model.JoinedEvent) {
+        <tr>
+            <td>
+                <a asp-page="../Events/Details" asp-route-id="@item.EventID">@Html.DisplayFor(modelItem => item.Event.Title)</a>
+            </td>
+            <td>
+                @item.Event.Date.ToLongDateString()
+            </td>
+            <td>
+                <a asp-page="./Delete" asp-route-id="@item.JoinedEventID" class="btn btn-danger">Cancel</a>
+            </td>
+        </tr>
+        }
+    </tbody>
+</table>

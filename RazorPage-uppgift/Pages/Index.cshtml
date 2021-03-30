@@ -1,0 +1,12 @@
+﻿@page
+@model IndexModel
+@{
+    ViewData["Title"] = "Home page";
+}
+
+<div class="text-center">
+    <h1 class="display-4">Welcome</h1>
+    <p>Find events that you want to sign up for!</p>
+    <a type="button" asp-area="" asp-page="/JoinedEvents/Index" class="btn btn-primary btn-lg">Login</a>
+    <a type="button" asp-area="" asp-page="/JoinedEvents/Index" class="btn btn-secondary btn-lg">Register</a>
+</div>
