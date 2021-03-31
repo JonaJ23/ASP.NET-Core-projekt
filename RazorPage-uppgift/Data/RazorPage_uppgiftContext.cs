@@ -8,8 +8,9 @@ using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 
 namespace RazorPage_uppgift.Data
 {
-    public class RazorPage_uppgiftContext : IdentityDbContext  //DbContext
+public class RazorPage_uppgiftContext : IdentityDbContext  //DbContext
     {
+
         public RazorPage_uppgiftContext (DbContextOptions<RazorPage_uppgiftContext> options)
             : base(options)
         {
@@ -22,6 +23,7 @@ namespace RazorPage_uppgift.Data
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+            base.OnModelCreating(modelBuilder);
             modelBuilder.Entity<Attendee>().ToTable("Attendee");
             modelBuilder.Entity<Event>().ToTable("Event");
             modelBuilder.Entity<JoinedEvent>().ToTable("JoinedEvent");
@@ -29,3 +31,4 @@ namespace RazorPage_uppgift.Data
         }
     }
 }
+
