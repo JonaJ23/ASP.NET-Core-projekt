@@ -5,15 +5,17 @@ using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 using RazorPage_uppgift.Models;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+using Microsoft.AspNetCore.Identity;
 
 namespace RazorPage_uppgift.Data
 {
-public class RazorPage_uppgiftContext : IdentityDbContext  //DbContext
+public class RazorPage_uppgiftContext : IdentityDbContext<IdentityUser>  //DbContext
     {
 
-        public RazorPage_uppgiftContext (DbContextOptions<RazorPage_uppgiftContext> options)
-            : base(options)
+        public RazorPage_uppgiftContext(DbContextOptions<RazorPage_uppgiftContext> options)
+               : base(options)
         {
+            Database.EnsureCreated();
         }
 
         public DbSet<Attendee> Attendees { get; set; }

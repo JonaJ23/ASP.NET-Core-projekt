@@ -10,6 +10,8 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 using RazorPage_uppgift.Data;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Identity.UI;
 
 namespace RazorPage_uppgift
 {
@@ -30,7 +32,9 @@ namespace RazorPage_uppgift
             services.AddDbContext<RazorPage_uppgiftContext>(options =>
                     options.UseSqlServer(Configuration.GetConnectionString("RazorPage_uppgiftContext")));
 
-            services.AddDatabaseDeveloperPageExceptionFilter();
+            services.AddDefaultIdentity<IdentityUser>()
+                .AddEntityFrameworkStores<RazorPage_uppgiftContext>();
+            
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -52,6 +56,7 @@ namespace RazorPage_uppgift
 
             app.UseRouting();
 
+            app.UseAuthentication();
             app.UseAuthorization();
 
             app.UseEndpoints(endpoints =>
