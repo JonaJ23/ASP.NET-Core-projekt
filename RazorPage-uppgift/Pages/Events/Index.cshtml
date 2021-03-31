@@ -1,64 +1,78 @@
 ﻿@page
 @model RazorPage_uppgift.Pages.Events.IndexModel
-
+@using Microsoft.AspNetCore.Identity
+@inject SignInManager<IdentityUser> SignInManager
+@inject UserManager<IdentityUser> UserManager
 @{
     ViewData["Title"] = "Index";
 }
 
-<h1>Events</h1>
+<h1 class="display-3 text-center">Events</h1>
+@if (SignInManager.IsSignedIn(User))
+{
+    <table class="table">
+        <thead>
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.Event[0].Title)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Event[0].Description)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Event[0].Address)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Event[0].Date)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Event[0].SpotsAvailable)
+                </th>
+                <th></th>
+            </tr>
+        </thead>
 
-<table class="table">
-    <thead>
-        <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.Event[0].Title)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Event[0].Description)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Event[0].Address)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Event[0].Date)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Event[0].SpotsAvailable) 
-            </th>
-            <th></th>
-        </tr>
-    </thead>
 
-
-    <tbody>
-@foreach (var item in Model.Event) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.Title)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Description)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Address)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Date)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.SpotsAvailable)
-            </td>
-            <td>
-                @if (item.SpotsAvailable == 0)
-                {
-                    <a asp-page="./Details" asp-route-id="@item.EventID" class="btn btn-dark btn-block disabled">Join</a>
-                }
-                @if (item.SpotsAvailable > 0)
-                {
-                    <a asp-page="./Details" asp-route-id="@item.EventID" class="btn btn-primary btn-block">Join</a>
-                }
-            </td>
-        </tr>
-        }
-    </tbody>
-</table>
+        <tbody>
+            @foreach (var item in Model.Event)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Title)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Description)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Address)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Date)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.SpotsAvailable)
+                    </td>
+                    <td>
+                        @if (item.SpotsAvailable == 0)
+                        {
+                            <a asp-page="./Details" asp-route-id="@item.EventID" class="btn btn-dark btn-block disabled">Join</a>
+                        }
+                        @if (item.SpotsAvailable > 0)
+                        {
+                            <a asp-page="./Details" asp-route-id="@item.EventID" class="btn btn-primary btn-block">Join</a>
+                        }
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+else
+{
+    <div class="text-center">
+        <h2 class="display-3">Please, Do sign in!</h2>
+        <div>
+            <partial name="_LoginPartial" />
+        </div>
+    </div>
+}
