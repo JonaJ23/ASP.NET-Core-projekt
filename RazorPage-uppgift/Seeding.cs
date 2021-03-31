@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 using RazorPage_uppgift.Models;
 using RazorPage_uppgift.Data;
 
-namespace RazorPage_uppgift
+namespace RazorPage_uppgift 
 {
     public static class Seeding // This class is used to seed the database when the application is launched.
     {
