@@ -11,10 +11,9 @@ namespace RazorPage_uppgift
     {
         public static void Initialize(RazorPage_uppgiftContext context)
         {
-            if (context.Attendees.Any() ||
-                context.Events.Any() ||
-                context.Organizers.Any() ||
-                context.JoinedEvents.Any())
+            if (context.Events.Any()
+
+                )
             {
                 Console.WriteLine("Data found in db, if you want the mock data provided in seed, open pmc " +
                     "and type : 'Drop-Database -Confirm'");
@@ -24,21 +23,21 @@ namespace RazorPage_uppgift
 
             // Attendees
 
-            Attendee[] attendees = new Attendee[] {
+            /*Attendee[] attendees = new Attendee[] {
             new Attendee{Name="John Stranger", Email="John.Stranger@here.com", PhoneNumber="2222111121" }
             };
             context.AddRange(attendees);
-            context.SaveChanges();
+            context.SaveChanges();*/
 
 
             // Organizers
 
-            Organizer[] organizers = new Organizer[] {
+           /* Organizer[] organizers = new Organizer[] {
             new Organizer{Name="JonaZ", Email="Jonaz.Jonsson@hothacking.se", PhoneNumber="1555555555"},
             new Organizer{Name="The Plumbers", Email="Yes.MarioLuigi@supah.com", PhoneNumber="0766666666"},
             };
             context.AddRange(organizers);
-            context.SaveChanges();
+            context.SaveChanges();*/
 
 
             // Events
@@ -46,7 +45,7 @@ namespace RazorPage_uppgift
             Event[] events = new Event[] {
             new Event{
                 Title="Stuff N things", 
-                Organizer=organizers[0], 
+                //Organizer=organizers[0], 
                 Description="Doing fun stuff and things that everybody likes.",
                 Address="20 Fun Street, Bean City", 
                 Date=DateTime.Parse("2021-06-19 12:00"),
@@ -55,7 +54,7 @@ namespace RazorPage_uppgift
 
             new Event{
                 Title="Awful event", 
-                Organizer=organizers[0], 
+                //Organizer=organizers[0], 
                 Description="Come to this awful event if you dare.",
                 Address="127 Awful Ave, Bean City",
                 Date=DateTime.Parse("2021-04-01 14:00"),
@@ -63,7 +62,7 @@ namespace RazorPage_uppgift
 
             new Event{
                 Title="Llama spitting", 
-                Organizer=organizers[1], 
+                //Organizer=organizers[1], 
                 Description="Wanna get spit by a Llama? Welcome to Llama Street.",
                 Address="Llama Street, Bean City",
                 Date=DateTime.Parse("2021-05-11 12:00"),
@@ -71,7 +70,7 @@ namespace RazorPage_uppgift
 
             new Event{
                 Title="Dankey Kongs banana party",
-                Organizer=organizers[1],
+                //Organizer=organizers[1],
                 Description="Lots of bananas collected by an infamous ape will be shared to everyone who attends.",
                 Address="100 Jungle Lane, Bananaland",
                 Date=DateTime.Parse("2021-05-03 18:00"),

@@ -22,7 +22,7 @@ namespace RazorPage_uppgift.Pages.JoinedEvents
         public async Task OnGetAsync()
         {
             JoinedEvent = await _context.JoinedEvents
-                .Include(j => j.Attendee)
+                .Include(j => j.MyUser)
                 .Include(j => j.Event).ToListAsync();
         }
     }

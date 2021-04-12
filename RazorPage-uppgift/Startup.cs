@@ -12,6 +12,7 @@ using Microsoft.EntityFrameworkCore;
 using RazorPage_uppgift.Data;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.UI;
+using RazorPage_uppgift.Models;
 
 namespace RazorPage_uppgift
 {
@@ -32,7 +33,7 @@ namespace RazorPage_uppgift
             services.AddDbContext<RazorPage_uppgiftContext>(options =>
                     options.UseSqlServer(Configuration.GetConnectionString("RazorPage_uppgiftContext")));
 
-            services.AddDefaultIdentity<IdentityUser>()
+            services.AddDefaultIdentity<MyUser>()
                 .AddEntityFrameworkStores<RazorPage_uppgiftContext>();
             
         }

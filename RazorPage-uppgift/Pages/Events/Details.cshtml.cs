@@ -35,10 +35,10 @@ namespace RazorPage_uppgift.Pages.Events
 
             EventIsListed = await _context.JoinedEvents
                 .Where(e => e.EventID == id)
-                .FirstOrDefaultAsync(a => a.AttendeeID == 1) == default ? false : true;
+                .FirstOrDefaultAsync(a => a.MyUserId == 1) == default ? false : true;
 
             Event = await _context.Events
-                .Include(e => e.Organizer)
+               // .Include(e => e.Organizer)
                 .FirstOrDefaultAsync(m => m.EventID == id);
 
             if (Event == null)
@@ -62,7 +62,7 @@ namespace RazorPage_uppgift.Pages.Events
                 return NotFound();
             }
 
-            JoinedEvent.Attendee = await _context.Attendees.Where(a => a.AttendeeID == 1).FirstOrDefaultAsync();
+            JoinedEvent.MyUser = await _context.MyUsers.Where(a => a.MyUserId == 1).FirstOrDefaultAsync();
             JoinedEvent.Event = await _context.Events.Where(e => e.EventID == id).FirstOrDefaultAsync();
 
             _context.JoinedEvents.Add(JoinedEvent);

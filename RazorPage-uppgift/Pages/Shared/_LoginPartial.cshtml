@@ -1,8 +1,8 @@
 ﻿@using Microsoft.AspNetCore.Identity
+@using RazorPage_uppgift.Models
 
-@inject SignInManager<IdentityUser> SignInManager
-@inject UserManager<IdentityUser> UserManager
-
+@inject SignInManager<MyUser> SignInManager
+@inject UserManager<MyUser> UserManager
 <ul class="navbar-nav">
     @if (SignInManager.IsSignedIn(User))
     {
@@ -17,9 +17,9 @@
     }
     else
     {
-    <div class="btn-group-lg">
-        <a class="btn btn-outline-primary" id="login" asp-area="Identity" asp-page="/Account/Login">Login</a>
-        <a class="btn btn-outline-secondary" id="register" asp-area="Identity" asp-page="/Account/Register">Register</a>
-    </div>
-     }
+        <div class="btn-group-lg">
+            <a class="btn btn-outline-primary" id="login" asp-area="Identity" asp-page="/Account/Login">Login</a>
+            <a class="btn btn-outline-secondary" id="register" asp-area="Identity" asp-page="/Account/Register">Register</a>
+        </div>
+    }
 </ul>

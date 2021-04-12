@@ -9,7 +9,7 @@ using Microsoft.AspNetCore.Identity;
 
 namespace RazorPage_uppgift.Data
 {
-public class RazorPage_uppgiftContext : IdentityDbContext<IdentityUser>  //DbContext
+public class RazorPage_uppgiftContext : IdentityDbContext<MyUser>  //DbContext
     {
 
         public RazorPage_uppgiftContext(DbContextOptions<RazorPage_uppgiftContext> options)
@@ -18,18 +18,16 @@ public class RazorPage_uppgiftContext : IdentityDbContext<IdentityUser>  //DbCon
             Database.EnsureCreated();
         }
 
-        public DbSet<Attendee> Attendees { get; set; }
+        public DbSet<MyUser> MyUsers { get; set; }
         public DbSet<Event> Events { get; set; }
-        public DbSet<JoinedEvent> JoinedEvents { get; set; }
-        public DbSet<Organizer> Organizers { get; set; }
+        public DbSet<JoinedEvent> JoinedEvents{ get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
-            modelBuilder.Entity<Attendee>().ToTable("Attendee");
+            modelBuilder.Entity<MyUser>().ToTable("MyUser");
             modelBuilder.Entity<Event>().ToTable("Event");
             modelBuilder.Entity<JoinedEvent>().ToTable("JoinedEvent");
-            modelBuilder.Entity<Organizer>().ToTable("Organizer");
         }
     }
 }

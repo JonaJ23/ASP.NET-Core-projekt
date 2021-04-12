@@ -12,8 +12,8 @@ namespace RazorPage_uppgift.Models
         public string Description { get; set; }
         public string Address { get; set; }
         public DateTime Date { get; set; }
-        public Organizer Organizer { get; set; }
+        //public Organizer Organizer { get; set; }
         public int SpotsAvailable { get; set; }
-        public int OrganizerID { get; set; }
+        public ICollection<MyUser> MyUsers { get; set;  }
     }
 }

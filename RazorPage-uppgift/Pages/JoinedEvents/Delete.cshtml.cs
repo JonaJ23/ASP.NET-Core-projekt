@@ -33,7 +33,7 @@ namespace RazorPage_uppgift.Pages.JoinedEvents
             .Where(re => re.JoinedEventID == id).FirstOrDefaultAsync();
 
             JoinedEvent = await _context.JoinedEvents
-            .Include(j => j.Attendee)
+            .Include(j => j.MyUser)
             .Include(j => j.Event).FirstOrDefaultAsync(m => m.JoinedEventID == id);
 
             if (JoinedEvent == null)
