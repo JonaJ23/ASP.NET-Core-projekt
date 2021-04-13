@@ -22,7 +22,7 @@ namespace RazorPage_uppgift
 
 
             // Attendees
-
+           
             /*Attendee[] attendees = new Attendee[] {
             new Attendee{Name="John Stranger", Email="John.Stranger@here.com", PhoneNumber="2222111121" }
             };

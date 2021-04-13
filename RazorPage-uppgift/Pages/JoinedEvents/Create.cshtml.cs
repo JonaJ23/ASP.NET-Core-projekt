@@ -59,7 +59,7 @@ namespace RazorPage_uppgift.Pages.JoinedEvents
             }
 
 
-            JoinedEvent.MyUser = _context.MyUsers.Where(a => a.MyUserId == 0).First();
+            //JoinedEvent.MyUser = _context.MyUsers.Where(a => a.MyUserId == 0).First();
             JoinedEvent.Event = _context.Events.Where(e => e.EventID == id).First();
 
 

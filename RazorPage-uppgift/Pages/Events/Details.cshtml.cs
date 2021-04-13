@@ -62,7 +62,7 @@ namespace RazorPage_uppgift.Pages.Events
                 return NotFound();
             }
 
-            JoinedEvent.MyUser = await _context.MyUsers.Where(a => a.MyUserId == 1).FirstOrDefaultAsync();
+            //JoinedEvent.MyUser = await _context.MyUsers.Where(a => a.MyUserId == 1).FirstOrDefaultAsync();
             JoinedEvent.Event = await _context.Events.Where(e => e.EventID == id).FirstOrDefaultAsync();
 
             _context.JoinedEvents.Add(JoinedEvent);

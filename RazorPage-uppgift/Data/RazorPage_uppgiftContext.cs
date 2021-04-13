@@ -22,13 +22,13 @@ public class RazorPage_uppgiftContext : IdentityDbContext<MyUser>  //DbContext
         public DbSet<Event> Events { get; set; }
         public DbSet<JoinedEvent> JoinedEvents{ get; set; }
 
-        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        /*protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
             modelBuilder.Entity<MyUser>().ToTable("MyUser");
             modelBuilder.Entity<Event>().ToTable("Event");
             modelBuilder.Entity<JoinedEvent>().ToTable("JoinedEvent");
-        }
+        }*/
     }
 }
 
