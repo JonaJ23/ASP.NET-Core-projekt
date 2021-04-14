@@ -41,23 +41,6 @@ namespace RazorPage_uppgift.Pages.Events
             }
             var userId = _userManager.GetUserId(User);
 
-<<<<<<< HEAD:RazorPage-uppgift/Pages/Events/Create.cshtml.cs
-            CurrentUser = await _context.MyUsers.Where(u => u.Id == userId).FirstOrDefaultAsync();
-=======
-            if (id == null)
-            {
-                return NotFound();
-            }
-
-
-            //JoinedEvent.MyUser = _context.MyUsers.Where(a => a.MyUserId == 0).First();
-            JoinedEvent.Event = _context.Events.Where(e => e.EventID == id).First();
-
-
-            _context.JoinedEvents.Add(JoinedEvent);
-            _context.Events.Where(e => e.EventID == id).First().SpotsAvailable--;
-
->>>>>>> b922c060bf8ca8b4341d8a850558aec7b7070f4b:RazorPage-uppgift/Pages/JoinedEvents/Create.cshtml.cs
 
             Event.Organizer = CurrentUser;
             _context.Events.Add(Event);
