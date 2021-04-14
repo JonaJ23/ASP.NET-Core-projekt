@@ -56,7 +56,7 @@
     </dl>
 </div>
 <form method="post">
-    @if (SignInManager.IsSignedIn(User) && !User.IsInRole("Organizer") || User.IsInRole("Admin"))
+    @if (SignInManager.IsSignedIn(User) && !User.IsInRole("Organizer"))
     {
         @if (SignInManager.IsSignedIn(User) && !User.IsInRole("Admin"))
         {
