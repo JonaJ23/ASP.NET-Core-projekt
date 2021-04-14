@@ -61,6 +61,7 @@ namespace RazorPage_uppgift.Pages.Events
                 Event.SpotsAvailable --;
                 MyUser.JoinedEvents.Add(Event);
                 await _context.SaveChangesAsync();
+                return Page();
             }
         }
     }

@@ -63,8 +63,6 @@ namespace RazorPage_uppgift
                 user.LastName = "Johnson";
                 user.EmailConfirmed = true;
                 IdentityResult result = userManager.CreateAsync(user, "Attend@12").Result;
-
-<<<<<<< HEAD
                 if (result.Succeeded)
                 {
                     userManager.AddToRoleAsync(user, "attendee").Wait();
@@ -72,15 +70,6 @@ namespace RazorPage_uppgift
             }
         }
 
-=======
-            // Attendees
-           
-            /*Attendee[] attendees = new Attendee[] {
-            new Attendee{Name="John Stranger", Email="John.Stranger@here.com", PhoneNumber="2222111121" }
-            };
-            context.AddRange(attendees);
-            context.SaveChanges();*/
->>>>>>> b922c060bf8ca8b4341d8a850558aec7b7070f4b
 
         // ROLES
 
