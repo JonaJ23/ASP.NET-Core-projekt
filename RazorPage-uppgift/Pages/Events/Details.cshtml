@@ -56,7 +56,7 @@
     </dl>
 </div>
 <form method="post">
-    @if (SignInManager.IsSignedIn(User) && !User.IsInRole("Organizer"))
+    @if (SignInManager.IsSignedIn(User) && !User.IsInRole("Organizer") || !User.IsInRole("Admin"))
     {
         if (!Model.MyUser.JoinedEvents.Contains(Model.Event) && Model.Event.SpotsAvailable > 0)
         {
@@ -71,9 +71,9 @@
             <a asp-page="./" asp-route-id="@Model.Event.EventID" class="btn btn-dark disabled">No Spots Available</a>
         }
     }
-    else if (User.IsInRole("Organizer"))
+    else if (User.IsInRole("Organizer") || User.IsInRole("Admin"))
     {
-        <a asp-page="./" asp-route-id="@Model.Event.EventID" class="btn btn-dark disabled">Cannot Join As Organizer</a>
+        <a asp-page="./" asp-route-id="@Model.Event.EventID" class="btn btn-dark disabled">Cannot Join Event</a>
     }
     else
     {
