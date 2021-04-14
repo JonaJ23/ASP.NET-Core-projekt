@@ -56,22 +56,29 @@
     </dl>
 </div>
 <form method="post">
-    @if (SignInManager.IsSignedIn(User) && !User.IsInRole("Organizer") || !User.IsInRole("Admin"))
+    @if (SignInManager.IsSignedIn(User) && !User.IsInRole("Organizer") || User.IsInRole("Admin"))
     {
-        if (!Model.MyUser.JoinedEvents.Contains(Model.Event) && Model.Event.SpotsAvailable > 0)
+        @if (SignInManager.IsSignedIn(User) && !User.IsInRole("Admin"))
         {
-            <input type="submit" asp-page="./" asp-route-id="@Model.Event.EventID" class="btn btn-success" value="Join" />
+            if (!Model.MyUser.JoinedEvents.Contains(Model.Event) && Model.Event.SpotsAvailable > 0)
+            {
+                <input type="submit" asp-page="./" asp-route-id="@Model.Event.EventID" class="btn btn-success" value="Join" />
+            }
+            else if (Model.MyUser.JoinedEvents.Contains(Model.Event))
+            {
+                <a asp-page="./" asp-route-id="@Model.Event.EventID" class="btn btn-dark disabled">Already Joined</a>
+            }
+            else if (Model.Event.SpotsAvailable <= 0)
+            {
+                <a asp-page="./" asp-route-id="@Model.Event.EventID" class="btn btn-dark disabled">No Spots Available</a>
+            }
         }
-        else if (Model.MyUser.JoinedEvents.Contains(Model.Event))
+        else
         {
-            <a asp-page="./" asp-route-id="@Model.Event.EventID" class="btn btn-dark disabled">Already Joined</a>
-        }
-        else if (Model.Event.SpotsAvailable <= 0)
-        {
-            <a asp-page="./" asp-route-id="@Model.Event.EventID" class="btn btn-dark disabled">No Spots Available</a>
+            <a asp-page="./" asp-route-id="@Model.Event.EventID" class="btn btn-dark disabled">Cannot Join Event</a>
         }
     }
-    else if (User.IsInRole("Organizer") || User.IsInRole("Admin"))
+    else if (User.IsInRole("Organizer"))
     {
         <a asp-page="./" asp-route-id="@Model.Event.EventID" class="btn btn-dark disabled">Cannot Join Event</a>
     }
