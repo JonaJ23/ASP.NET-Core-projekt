@@ -75,8 +75,6 @@ namespace RazorPage_uppgift
 
         static void SeedRoles(RazorPage_uppgiftContext context, RoleManager<IdentityRole> roleManager)
         {
-
-            context.Database.EnsureDeleted();
             context.Database.EnsureCreated();
             context.SaveChanges();
 
@@ -98,7 +96,6 @@ namespace RazorPage_uppgift
 
         static void SeedEvent(RazorPage_uppgiftContext context, UserManager<MyUser> userManager)
         {
-            context.Events.RemoveRange(context.Events);
             context.SaveChanges();
 
             var organizerUser = context.MyUsers.Where(u => u.FirstName == "Codeboss").FirstOrDefault();
