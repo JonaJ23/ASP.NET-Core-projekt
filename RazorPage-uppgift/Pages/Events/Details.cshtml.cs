@@ -62,7 +62,20 @@ namespace RazorPage_uppgift.Pages.Events
                 MyUser.JoinedEvents.Add(Event);
                 await _context.SaveChangesAsync();
             }
+<<<<<<< HEAD
             return Page();
+=======
+
+            //JoinedEvent.MyUser = await _context.MyUsers.Where(a => a.MyUserId == 1).FirstOrDefaultAsync();
+            JoinedEvent.Event = await _context.Events.Where(e => e.EventID == id).FirstOrDefaultAsync();
+
+            _context.JoinedEvents.Add(JoinedEvent);
+            _context.Events.Where(e => e.EventID == id).First().SpotsAvailable--;
+
+            await _context.SaveChangesAsync();
+
+            return RedirectToPage("./Details", new { id = id });
+>>>>>>> b922c060bf8ca8b4341d8a850558aec7b7070f4b
         }
     }
 }

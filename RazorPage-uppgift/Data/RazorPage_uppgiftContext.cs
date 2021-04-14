@@ -19,6 +19,18 @@ public class RazorPage_uppgiftContext : IdentityDbContext<MyUser>  //DbContext
 
         public DbSet<MyUser> MyUsers { get; set; }
         public DbSet<Event> Events { get; set; }
+<<<<<<< HEAD
+=======
+        public DbSet<JoinedEvent> JoinedEvents{ get; set; }
+
+        /*protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            base.OnModelCreating(modelBuilder);
+            modelBuilder.Entity<MyUser>().ToTable("MyUser");
+            modelBuilder.Entity<Event>().ToTable("Event");
+            modelBuilder.Entity<JoinedEvent>().ToTable("JoinedEvent");
+        }*/
+>>>>>>> b922c060bf8ca8b4341d8a850558aec7b7070f4b
     }
 }
 
