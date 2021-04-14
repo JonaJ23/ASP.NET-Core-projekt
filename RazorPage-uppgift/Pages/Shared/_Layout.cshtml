@@ -31,24 +31,24 @@
                             <a class="nav-link text-dark" asp-area="" asp-page="/Index">Home</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-page="/Events/Index">Join Events</a>
+                            @if (User.IsInRole("Organizer"))
+                            {
+                                <a class="nav-link text-dark" asp-area="" asp-page="/Events/Index">Add/Remove Events</a>
+                            }
+                            else
+                            {
+                                <a class="nav-link text-dark" asp-area="" asp-page="/Events/Index">Join Events</a>
+                            }
                         </li>
                         <li class="nav-item">
                             @if (SignInManager.IsSignedIn(User))
                             {
-                                if (User.IsInRole("Organizer"))
-                                {
-                                    <a class="nav-link text-dark" asp-area="" asp-page="/MyEvents/Index">Add/Remove Events</a>
-                                }
-                                else
+                                @if (SignInManager.IsSignedIn(User) && !User.IsInRole("Organizer"))
                                 {
                                     <a class="nav-link text-dark" asp-area="" asp-page="/MyEvents/Index">My Events</a>
                                 }
                             }
-                            else
-                            {
-                                <a class="nav-link text-dark" id="login" asp-area="Identity" asp-page="/Account/Login">My Events</a>
-                            }
+
                         </li>
                             @if (User.IsInRole("Admin"))
                             {
