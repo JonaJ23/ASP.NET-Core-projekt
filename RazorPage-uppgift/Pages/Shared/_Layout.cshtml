@@ -50,7 +50,13 @@
                                 <a class="nav-link text-dark" id="login" asp-area="Identity" asp-page="/Account/Login">My Events</a>
                             }
                         </li>
-                    </ul>
+                            @if (User.IsInRole("Admin"))
+                            {
+                            <li class="nav-item">
+                                <a class="nav-link text-dark" asp-area="" asp-page="/ManageUsers/Index">Manage Users</a>
+                            </li>
+                            }
+                        </ul>
                     <div class="float-right">
                         <partial name="_LoginPartial" />
                     </div>
