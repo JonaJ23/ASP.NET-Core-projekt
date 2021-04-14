@@ -36,7 +36,14 @@
                         <li class="nav-item">
                             @if (SignInManager.IsSignedIn(User))
                             {
-                                <a class="nav-link text-dark" asp-area="" asp-page="/MyEvents/Index">My Events</a>
+                                if (User.IsInRole("Organizer"))
+                                {
+                                    <a class="nav-link text-dark" asp-area="" asp-page="/MyEvents/Index">Add/Remove Events</a>
+                                }
+                                else
+                                {
+                                    <a class="nav-link text-dark" asp-area="" asp-page="/MyEvents/Index">My Events</a>
+                                }
                             }
                             else
                             {
