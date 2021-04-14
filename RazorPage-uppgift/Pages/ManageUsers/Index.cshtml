@@ -1,0 +1,68 @@
+﻿@page
+@model RazorPage_uppgift.Pages.ManageUsers.IndexModel
+
+@{
+    ViewData["Title"] = "Index";
+}
+@using Microsoft.AspNetCore.Identity;
+@using RazorPage_uppgift.Models;
+
+@inject SignInManager<MyUser> SignInManager
+@inject UserManager<MyUser> UserManager
+<h1>Users</h1>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                UserName
+            </th>
+            <th>
+                Email
+            </th>
+            <th>
+                Is Organiser
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+
+
+        @foreach (var item in Model.MyUsers)
+        {
+
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.FirstName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Email)
+                </td>
+                <td>
+
+
+                    @if (!UserManager.IsInRoleAsync(item, "Organizer").Result && !UserManager.IsInRoleAsync(item, "Admin").Result)
+                    {
+                        <form method="post">
+                            <input type="hidden" name="id" value="@item.Id" />
+                            <input type="checkbox" onchange="this.form.submit()" value="@item.Id" name="id" />
+                        </form>
+                    }
+                    else if (UserManager.IsInRoleAsync(item, "Admin").Result)
+                    {
+                        <i>Admin</i>
+                    }
+                    else
+                    {
+                        <form method="post">
+                            <input type="hidden" name="id" value="@item.Id" />
+                            <input type="checkbox" onchange="this.form.submit()" value="@item.Id" name="id" checked />
+                        </form>
+                    }
+                </td>
+            </tr>
+
+        }
+    </tbody>
+</table>
