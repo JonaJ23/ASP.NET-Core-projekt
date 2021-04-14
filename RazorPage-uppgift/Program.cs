@@ -8,6 +8,8 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Identity;
+using RazorPage_uppgift.Models;
 
 namespace RazorPage_uppgift
 {
@@ -30,9 +32,9 @@ namespace RazorPage_uppgift
                 try
                 {
                     var context = services.GetRequiredService<RazorPage_uppgiftContext>();
-                    context.Database.EnsureCreated();
-
-                    Seeding.Initialize(context);
+                    var userManager = services.GetRequiredService<UserManager<MyUser>>();
+                    var roleManager = services.GetRequiredService<RoleManager<IdentityRole>>();
+                    Seeding.Initialize(context, userManager, roleManager);
                 }
                 catch (Exception ex)
                 {

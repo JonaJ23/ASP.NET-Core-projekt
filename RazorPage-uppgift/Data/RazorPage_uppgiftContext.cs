@@ -15,20 +15,10 @@ public class RazorPage_uppgiftContext : IdentityDbContext<MyUser>  //DbContext
         public RazorPage_uppgiftContext(DbContextOptions<RazorPage_uppgiftContext> options)
                : base(options)
         {
-            Database.EnsureCreated();
         }
 
         public DbSet<MyUser> MyUsers { get; set; }
         public DbSet<Event> Events { get; set; }
-        public DbSet<JoinedEvent> JoinedEvents{ get; set; }
-
-        protected override void OnModelCreating(ModelBuilder modelBuilder)
-        {
-            base.OnModelCreating(modelBuilder);
-            modelBuilder.Entity<MyUser>().ToTable("MyUser");
-            modelBuilder.Entity<Event>().ToTable("Event");
-            modelBuilder.Entity<JoinedEvent>().ToTable("JoinedEvent");
-        }
     }
 }
 

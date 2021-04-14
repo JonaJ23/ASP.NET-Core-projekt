@@ -9,7 +9,7 @@ using RazorPage_uppgift.Data;
 using RazorPage_uppgift.Models;
 using Microsoft.AspNetCore.Identity;
 
-namespace RazorPage_uppgift.Pages.Events
+namespace RazorPage_uppgift.Pages.MyEvents
 {
     public class DetailsModel : PageModel
     {
@@ -23,8 +23,7 @@ namespace RazorPage_uppgift.Pages.Events
         }
 
         public Event Event { get; set; }
-        public MyUser MyUser { get; set; }
-        
+
         public async Task<IActionResult> OnGetAsync(int? id)
         {
             if (id == null)
@@ -34,23 +33,20 @@ namespace RazorPage_uppgift.Pages.Events
 
             Event = await _context.Events.FirstOrDefaultAsync(m => m.EventID == id);
 
-            var userId = _userManager.GetUserId(User);
-
-            MyUser = await _context.MyUsers.Where(u => u.Id == userId).Include(u => u.JoinedEvents).FirstOrDefaultAsync();
-
             if (Event == null)
             {
                 return NotFound();
             }
             return Page();
         }
+
         public async Task<IActionResult> OnPostAsync(int? id)
         {
             Event = await _context.Events.FirstOrDefaultAsync(m => m.EventID == id);
 
             var userId = _userManager.GetUserId(User);
 
-            MyUser = await _context.MyUsers.Where(u => u.Id == userId).Include(u=>u.JoinedEvents).FirstOrDefaultAsync();
+            var MyUser = await _context.MyUsers.Where(u => u.Id == userId).Include(u => u.JoinedEvents).FirstOrDefaultAsync();
 
             if (MyUser == null)
             {
@@ -58,11 +54,13 @@ namespace RazorPage_uppgift.Pages.Events
             }
             else
             {
-                Event.SpotsAvailable --;
-                MyUser.JoinedEvents.Add(Event);
+                Event.SpotsAvailable++;
+                MyUser.JoinedEvents.Remove(Event);
                 await _context.SaveChangesAsync();
+                return RedirectToPage("./Index");
             }
-            return Page();
+            
+
         }
     }
 }

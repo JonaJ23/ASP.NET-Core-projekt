@@ -13,6 +13,8 @@ using RazorPage_uppgift.Data;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.UI;
 using RazorPage_uppgift.Models;
+using Microsoft.AspNetCore.Authorization;
+using RazorPage_uppgift.Security;
 
 namespace RazorPage_uppgift
 {
@@ -33,9 +35,20 @@ namespace RazorPage_uppgift
             services.AddDbContext<RazorPage_uppgiftContext>(options =>
                     options.UseSqlServer(Configuration.GetConnectionString("RazorPage_uppgiftContext")));
 
-            services.AddDefaultIdentity<MyUser>()
+            services.AddDefaultIdentity<MyUser>(options => options.SignIn.RequireConfirmedAccount = true)
+                .AddRoles<IdentityRole>()
                 .AddEntityFrameworkStores<RazorPage_uppgiftContext>();
-            
+
+            services.AddScoped<IAuthorizationHandler, MyHandler>();
+            services.AddAuthorization(options =>
+            {
+                options.AddPolicy("RequireAdminRole",
+                    policy => policy.RequireRole("Admin"));
+                options.AddPolicy("RequireOrganizerRole",
+                    policy => policy.RequireRole("Organizer", "Admin"));
+                options.AddPolicy("RequireOrganizerMatchWithEvent",
+                    policy => policy.Requirements.Add(new MyRequirements()));
+            });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

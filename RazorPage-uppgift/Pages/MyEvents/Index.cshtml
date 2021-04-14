@@ -1,13 +1,14 @@
 ﻿@page
-@model RazorPage_uppgift.Pages.Events.IndexModel
+@model RazorPage_uppgift.Pages.MyEvents.IndexModel
 
 @{
     ViewData["Title"] = "Index";
 }
+
 @using Microsoft.AspNetCore.Identity
 @using RazorPage_uppgift.Models
 
-@inject SignInManager<MyUser> SignInManager
+
 @inject UserManager<MyUser> UserManager
 
 <h1>Index</h1>
@@ -15,22 +16,22 @@
     <thead>
         <tr>
             <th>
-                @Html.DisplayNameFor(model => model.Event[0].Title)
+                Title
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Event[0].Description)
+                Description
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Event[0].Place)
+                Place
             </th>
             <th>
-                Organizer
+                Address
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Event[0].Date)
+                Date
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Event[0].SpotsAvailable)
+                SpotsAvailable
             </th>
             <th></th>
         </tr>
@@ -49,7 +50,7 @@
                     @Html.DisplayFor(modelItem => item.Place)
                 </td>
                 <td>
-                    @Html.DisplayFor(modelItem => item.Organizer.FirstName)
+                    @Html.DisplayFor(modelItem => item.Address)
                 </td>
                 <td>
                     @item.Date.ToShortDateString()
@@ -58,9 +59,16 @@
                     @Html.DisplayFor(modelItem => item.SpotsAvailable)
                 </td>
                 <td>
-                    <a asp-page="./Details" asp-route-id="@item.EventID" class="btn btn-primary btn-block">Details</a>
+                    <a asp-page="./Details" asp-route-id="@item.EventID">Details</a>
                 </td>
             </tr>
         }
     </tbody>
 </table>
+
+@if (User.IsInRole("Organizer"))
+{
+    <div class="text-center">
+        <a href="/Events/Create" class="btn btn-dark">Add Event</a>
+    </div>
+}

@@ -8,19 +8,19 @@ using Microsoft.EntityFrameworkCore;
 using RazorPage_uppgift.Data;
 using RazorPage_uppgift.Models;
 
-namespace RazorPage_uppgift.Pages.JoinedEvents
+namespace RazorPage_uppgift.Pages.Events
 {
     public class DeleteModel : PageModel
     {
-        private readonly RazorPage_uppgiftContext _context;
+        private readonly RazorPage_uppgift.Data.RazorPage_uppgiftContext _context;
 
-        public DeleteModel(RazorPage_uppgiftContext context)
+        public DeleteModel(RazorPage_uppgift.Data.RazorPage_uppgiftContext context)
         {
             _context = context;
         }
 
         [BindProperty]
-        public JoinedEvent JoinedEvent { get; set; }
+        public Event Event { get; set; }
 
         public async Task<IActionResult> OnGetAsync(int? id)
         {
@@ -29,20 +29,14 @@ namespace RazorPage_uppgift.Pages.JoinedEvents
                 return NotFound();
             }
 
-            JoinedEvent = await _context.JoinedEvents
-            .Where(re => re.JoinedEventID == id).FirstOrDefaultAsync();
+            Event = await _context.Events.FirstOrDefaultAsync(m => m.EventID == id);
 
-            JoinedEvent = await _context.JoinedEvents
-            .Include(j => j.MyUser)
-            .Include(j => j.Event).FirstOrDefaultAsync(m => m.JoinedEventID == id);
-
-            if (JoinedEvent == null)
+            if (Event == null)
             {
                 return NotFound();
             }
             return Page();
         }
-
 
         public async Task<IActionResult> OnPostAsync(int? id)
         {
@@ -51,14 +45,14 @@ namespace RazorPage_uppgift.Pages.JoinedEvents
                 return NotFound();
             }
 
-            JoinedEvent = await _context.JoinedEvents.FindAsync(id);
+            Event = await _context.Events.FindAsync(id);
 
-            if (JoinedEvent != null)
+            if (Event != null)
             {
-                _context.Events.Where(e => e.EventID == JoinedEvent.EventID).First().SpotsAvailable++;
-                _context.JoinedEvents.Remove(JoinedEvent);
+                _context.Events.Remove(Event);
                 await _context.SaveChangesAsync();
             }
+
             return RedirectToPage("./Index");
         }
     }
