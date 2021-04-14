@@ -5,10 +5,21 @@
 }
 
 <div class="text-center">
-    <h1 class="display-4">Welcome</h1>
+    @if (User.IsInRole("Admin"))
+    {
+        <h1 class="display-4">Welcome Admin!</h1>
+    }
+    else if (User.IsInRole("Organizer"))
+    {
+        <h1 class="display-4">Welcome Organizer!</h1>
+    }
+    else
+    {
+        <h1 class="display-4">Welcome</h1>
+    }
     <p>Find events that you want to sign up for!</p>
     <div>
         <partial name="_LoginPartial" />
     </div>
-    
+
 </div>
