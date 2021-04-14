@@ -32,36 +32,36 @@
         @foreach (var item in Model.MyUsers)
         {
 
-            <tr>
-                <td>
-                    @Html.DisplayFor(modelItem => item.FirstName)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Email)
-                </td>
-                <td>
+        <tr>
+            <!--<td>
+                (AtSymbol Needed)Html.DisplayFor(modelItem => item.FirstName)
+            </td>-->
+            <td>
+                @Html.DisplayFor(modelItem => item.Email)
+            </td>
+            <td>
 
 
-                    @if (!UserManager.IsInRoleAsync(item, "Organizer").Result && !UserManager.IsInRoleAsync(item, "Admin").Result)
-                    {
-                        <form method="post">
-                            <input type="hidden" name="id" value="@item.Id" />
-                            <input type="checkbox" onchange="this.form.submit()" value="@item.Id" name="id" />
-                        </form>
-                    }
-                    else if (UserManager.IsInRoleAsync(item, "Admin").Result)
-                    {
-                        <i>Admin</i>
-                    }
-                    else
-                    {
-                        <form method="post">
-                            <input type="hidden" name="id" value="@item.Id" />
-                            <input type="checkbox" onchange="this.form.submit()" value="@item.Id" name="id" checked />
-                        </form>
-                    }
-                </td>
-            </tr>
+                @if (!UserManager.IsInRoleAsync(item, "Organizer").Result && !UserManager.IsInRoleAsync(item, "Admin").Result)
+                {
+                    <form method="post">
+                        <input type="hidden" name="id" value="@item.Id" />
+                        <input type="checkbox" onchange="this.form.submit()" value="@item.Id" name="id" />
+                    </form>
+                }
+                else if (UserManager.IsInRoleAsync(item, "Admin").Result)
+                {
+                    <i>Admin</i>
+                }
+                else
+                {
+                    <form method="post">
+                        <input type="hidden" name="id" value="@item.Id" />
+                        <input type="checkbox" onchange="this.form.submit()" value="@item.Id" name="id" checked />
+                    </form>
+                }
+            </td>
+        </tr>
 
         }
     </tbody>

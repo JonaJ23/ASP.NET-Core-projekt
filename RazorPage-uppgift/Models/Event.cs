@@ -10,9 +10,13 @@ namespace RazorPage_uppgift.Models
     public class Event
     {
         public int EventID { get; set; } // PK
+        [Required]
         public string Title { get; set; }
+        [Required]
         public string Description { get; set; }
+        [Required]
         public string Place { get; set; }
+        [Required]
         public string Address { get; set; }
         public DateTime Date { get; set; }
         public int SpotsAvailable { get; set; }
