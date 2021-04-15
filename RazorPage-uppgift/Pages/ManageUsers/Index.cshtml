@@ -15,6 +15,9 @@
     <thead>
         <tr>
             <th>
+                FirstName
+            </th>
+            <th>
                 Email
             </th>
             <th>
@@ -30,9 +33,9 @@
         {
 
         <tr>
-            <!--<td>
-                (AtSymbol Needed)Html.DisplayFor(modelItem => item.FirstName)
-            </td>-->
+            <td>
+                @Html.DisplayFor(modelItem => item.FirstName)
+            </td>
             <td>
                 @Html.DisplayFor(modelItem => item.Email)
             </td>

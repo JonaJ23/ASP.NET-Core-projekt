@@ -96,9 +96,14 @@ namespace RazorPage_uppgift
 
         static void SeedEvent(RazorPage_uppgiftContext context, UserManager<MyUser> userManager)
         {
-            context.Database.EnsureDeleted();
+            //context.Database.EnsureDeleted();
             context.Database.EnsureCreated();
             context.SaveChanges();
+
+            if (context.Events.Any())
+            {
+                return;
+            }
 
             var organizerUser = context.MyUsers.Where(u => u.FirstName == "Codeboss").FirstOrDefault();
 

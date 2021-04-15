@@ -10,7 +10,7 @@
 @inject SignInManager<MyUser> SignInManager
 @inject UserManager<MyUser> UserManager
 
-<h1>Index</h1>
+<h1>Events</h1>
 <table class="table">
     <thead>
         <tr>
@@ -24,7 +24,7 @@
                 @Html.DisplayNameFor(model => model.Event[0].Place)
             </th>
             <th>
-                Organizer
+                @Html.DisplayNameFor(model => model.Event[0].Organizer)
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.Event[0].Date)

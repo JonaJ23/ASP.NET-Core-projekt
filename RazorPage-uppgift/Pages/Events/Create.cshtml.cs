@@ -41,6 +41,7 @@ namespace RazorPage_uppgift.Pages.Events
             }
             var userId = _userManager.GetUserId(User);
 
+            CurrentUser = await _context.MyUsers.Where(u => u.Id == userId).FirstOrDefaultAsync();
 
             Event.Organizer = CurrentUser;
             _context.Events.Add(Event);
