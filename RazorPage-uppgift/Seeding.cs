@@ -29,8 +29,7 @@ namespace RazorPage_uppgift
                 MyUser user = new MyUser();
                 user.UserName = "admin@live.com";
                 user.Email = "admin@live.com";
-                user.FirstName = "Admin";
-                user.LastName = "Johnson";
+                user.Name = "Admin";
                 user.EmailConfirmed = true;
                 IdentityResult result = userManager.CreateAsync(user, "Admin@12").Result;
 
@@ -44,8 +43,7 @@ namespace RazorPage_uppgift
                 MyUser user = new MyUser();
                 user.UserName = "organizer@live.com";
                 user.Email = "organizer@live.com";
-                user.FirstName = "Codeboss";
-                user.LastName = "Johnson";
+                user.Name = "Codeboss";
                 user.EmailConfirmed = true;
                 IdentityResult result = userManager.CreateAsync(user, "Organ@12").Result;
 
@@ -59,8 +57,7 @@ namespace RazorPage_uppgift
                 MyUser user = new MyUser();
                 user.UserName = "attendee@live.com";
                 user.Email = "attendee@live.com";
-                user.FirstName = "Attendee";
-                user.LastName = "Johnson";
+                user.Name = "Attendee";
                 user.EmailConfirmed = true;
                 IdentityResult result = userManager.CreateAsync(user, "Attend@12").Result;
                 if (result.Succeeded)
@@ -106,7 +103,7 @@ namespace RazorPage_uppgift
                 return;
             }
 
-            var organizerUser = context.MyUsers.Where(u => u.FirstName == "Codeboss").FirstOrDefault();
+            var organizerUser = context.MyUsers.Where(u => u.Name == "Codeboss").FirstOrDefault();
 
             var events = new Event[]
             {
@@ -114,7 +111,7 @@ namespace RazorPage_uppgift
                     Description="Doing fun stuff and things that everybody likes.", 
                     Place="Fun Arena", 
                     Address="20 Fun Street, Bean City", 
-                    Date=DateTime.Parse("2021-06-19"), 
+                    Date=DateTime.Parse("2021-06-19 13:00"), 
                     SpotsAvailable=0,
                     Organizer=organizerUser},
 
@@ -122,7 +119,7 @@ namespace RazorPage_uppgift
                     Description="Come to this awful event if you dare.",
                     Place="Awful Arena",
                     Address="127 Awful Ave, Bean City",
-                    Date=DateTime.Parse("2021-09-01"),
+                    Date=DateTime.Parse("2021-09-01 16:00"),
                     SpotsAvailable=97,
                     Organizer=organizerUser},
 
@@ -130,7 +127,7 @@ namespace RazorPage_uppgift
                     Description="Wanna get spit by a Llama? Welcome to Llama Park.", 
                     Place="Llama Park", 
                     Address="89 Llama Street, SimCity", 
-                    Date=DateTime.Parse("2021-05-11"), 
+                    Date=DateTime.Parse("2021-05-11 12:00"), 
                     SpotsAvailable=25, 
                     Organizer=organizerUser},
 
@@ -138,7 +135,7 @@ namespace RazorPage_uppgift
                     Description="Lots of bananas collected by an infamous ape will be shared to everyone who attends.", 
                     Place="Munky Cheez", 
                     Address="100 Jungle Lane, Bananaland", 
-                    Date=DateTime.Parse("2021-08-13"), 
+                    Date=DateTime.Parse("2021-08-13 13:00"), 
                     SpotsAvailable=1, 
                     Organizer=organizerUser},
             };

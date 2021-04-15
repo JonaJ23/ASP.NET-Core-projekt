@@ -8,8 +8,7 @@ namespace RazorPage_uppgift.Models
 {
     public class MyUser : IdentityUser
     {
-        public string FirstName { get; set; }
-        public string LastName { get; set; }
+        public string Name { get; set; }
         public ICollection<Event> HostedEvents { get; set; }
         public ICollection<Event> JoinedEvents { get; set; }
     }
