@@ -75,6 +75,7 @@ namespace RazorPage_uppgift
 
         static void SeedRoles(RazorPage_uppgiftContext context, RoleManager<IdentityRole> roleManager)
         {
+            context.Database.EnsureDeleted();
             context.Database.EnsureCreated();
             context.SaveChanges();
 
