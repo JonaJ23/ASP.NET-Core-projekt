@@ -29,7 +29,8 @@ namespace RazorPage_uppgift
                 MyUser user = new MyUser();
                 user.UserName = "admin@live.com";
                 user.Email = "admin@live.com";
-                user.Name = "Admin";
+                user.FirstName = "Admin";
+                user.LastName = "Johnson";
                 user.EmailConfirmed = true;
                 IdentityResult result = userManager.CreateAsync(user, "Admin@12").Result;
 
@@ -43,7 +44,8 @@ namespace RazorPage_uppgift
                 MyUser user = new MyUser();
                 user.UserName = "organizer@live.com";
                 user.Email = "organizer@live.com";
-                user.Name = "Codeboss";
+                user.FirstName = "Codeboss";
+                user.LastName = "Johnson";
                 user.EmailConfirmed = true;
                 IdentityResult result = userManager.CreateAsync(user, "Organ@12").Result;
 
@@ -57,7 +59,8 @@ namespace RazorPage_uppgift
                 MyUser user = new MyUser();
                 user.UserName = "attendee@live.com";
                 user.Email = "attendee@live.com";
-                user.Name = "Attendee";
+                user.FirstName = "Attendee";
+                user.LastName = "Johnson";
                 user.EmailConfirmed = true;
                 IdentityResult result = userManager.CreateAsync(user, "Attend@12").Result;
                 if (result.Succeeded)
@@ -72,7 +75,7 @@ namespace RazorPage_uppgift
 
         static void SeedRoles(RazorPage_uppgiftContext context, RoleManager<IdentityRole> roleManager)
         {
-            context.Database.EnsureDeleted();
+            //context.Database.EnsureDeleted();
             context.Database.EnsureCreated();
             context.SaveChanges();
 
@@ -103,7 +106,7 @@ namespace RazorPage_uppgift
                 return;
             }
 
-            var organizerUser = context.MyUsers.Where(u => u.Name == "Codeboss").FirstOrDefault();
+            var organizerUser = context.MyUsers.Where(u => u.FirstName == "Codeboss").FirstOrDefault();
 
             var events = new Event[]
             {

@@ -8,9 +8,11 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using RazorPage_uppgift.Data;
 using RazorPage_uppgift.Models;
+using Microsoft.AspNetCore.Authorization;
 
-namespace RazorPage_uppgift.Pages.Events
+namespace RazorPage_uppgift.Pages.MyEvents
 {
+    [Authorize(Policy = "RequireOrganizerMatchWithEvent")]
     public class EditModel : PageModel
     {
         private readonly RazorPage_uppgift.Data.RazorPage_uppgiftContext _context;

@@ -1,5 +1,5 @@
 ﻿@page
-@model RazorPage_uppgift.Pages.Events.EditModel
+@model RazorPage_uppgift.Pages.MyEvents.EditModel
 
 @{
     ViewData["Title"] = "Edit";
@@ -40,11 +40,12 @@
             </div>
             <div class="form-group">
                 <label asp-for="Event.SpotsAvailable" class="control-label"></label>
-                <input asp-for="Event.SpotsAvailable" class="form-control" min="1" />
+                <input asp-for="Event.SpotsAvailable" class="form-control" />
                 <span asp-validation-for="Event.SpotsAvailable" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <input type="submit" value="Save" class="btn btn-primary" />
+                <input type="submit" value="Save" class="btn btn-primary" /> |
+                <a asp-page="./Delete" class="btn btn-danger" asp-route-id="@Model.Event.EventID">Delete</a>
             </div>
         </form>
     </div>

@@ -1,5 +1,11 @@
 ﻿@page
 @model IndexModel
+
+@using Microsoft.AspNetCore.Identity
+@using RazorPage_uppgift.Models
+
+@inject UserManager<MyUser> UserManager
+
 @{
     ViewData["Title"] = "Home page";
 }
@@ -15,9 +21,9 @@
     }
     else
     {
-        <h1 class="display-4">Welcome</h1>
+        <h1 class="display-4">Welcome!</h1>
     }
-    <p>Where events come together!</p>
+    <p>Where events come together.</p>
     <div>
         <partial name="_LoginPartial" />
     </div>

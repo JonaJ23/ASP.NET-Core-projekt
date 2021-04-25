@@ -30,32 +30,38 @@
             <th>
                 Date
             </th>
+            <th>
+                SpotsAvailable
+            </th>
             <th></th>
         </tr>
     </thead>
     <tbody>
         @foreach (var item in Model.Event)
         {
-            <tr>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Title)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Description)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Place)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Address)
-                </td>
-                <td>
-                    @item.Date.ToShortDateString()
-                </td>
-                <td>
-                    <a asp-page="./Details" asp-route-id="@item.EventID" class="btn btn-primary btn-block">Details</a>
-                </td>
-            </tr>
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Title)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Description)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Place)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Address)
+            </td>
+            <td>
+                @item.Date.ToShortDateString()
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.SpotsAvailable)
+            </td>
+            <td>
+                <a asp-page="./Details" asp-route-id="@item.EventID" class="btn btn-primary btn-block">Details</a>
+            </td>
+        </tr>
         }
     </tbody>
 </table>
